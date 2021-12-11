@@ -38,7 +38,7 @@ class Board:
     def render(self, surface: pygame.Surface):
         for row in range(len(self.board)):
             for column in range(len(self.board[row])):
-                self.render_cell(surface)
+                self.render_cell(surface, row, column)
 
     def get_cell(self, mouse_pos):
         """

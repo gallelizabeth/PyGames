@@ -64,8 +64,8 @@ class Life(Board):
 
     def render_cell(self, surface: pygame.Surface, row, column):
         if self.board[row][column] == 1:
-            pygame.drow.rect(surface, 'green', self.cell_rect(row, column), 0)
-        pygame.drow.rect(surface, 'white', self.cell_rect(row, column), 1)
+            pygame.draw.rect(surface, 'green', self.cell_rect(row, column), 0)
+        pygame.draw.rect(surface, 'white', self.cell_rect(row, column), 1)
 
 
 if __name__ == '__main__':
