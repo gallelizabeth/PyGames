@@ -62,6 +62,11 @@ class Life(Board):
             if time - self.time > self.step_time:
                 self.next_move()
 
+    def render_cell(self, surface: pygame.Surface, row, column):
+        if self.board[row][column] == 1:
+            pygame.drow.rect(surface, 'green', self.cell_rect(row, column), 0)
+        pygame.drow.rect(surface, 'white', self.cell_rect(row, column), 1)
+
 
 if __name__ == '__main__':
     pygame.init()

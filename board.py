@@ -19,21 +19,26 @@ class Board:
         self.top = top
         self.cell_size = cell_size
 
+    def cell_rect(self, row, column):
+        return (self.left + self.cell_size * column,
+                self.top + self.cell_size * row,
+                self.cell_size,
+                self.cell_size)
+
+    def render_cell(self, surface: pygame.Surface, row, column):
+        cell = self.board[row][column]
+        if cell == 0:
+            line_width = 1
+        else:
+            line_width = 0
+        pygame.draw.rect(
+            surface, 'white',
+            self.cell_rect(row, column), line_width)
+
     def render(self, surface: pygame.Surface):
         for row in range(len(self.board)):
             for column in range(len(self.board[row])):
-                cell = self.board[row][column]
-                pygame.draw.rect(
-                    surface=surface,
-                    color='pink',
-                    rect=(
-                        self.left + self.cell_size * column,
-                        self.top + self.cell_size * row,
-                        self.cell_size,
-                        self.cell_size
-                    ),
-                    width=1 if cell == 0 else 0
-                )
+                self.render_cell(surface)
 
     def get_cell(self, mouse_pos):
         """
