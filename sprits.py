@@ -39,12 +39,14 @@ class Bomb(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = random.randrange(width)
         self.rect.y = random.randrange(height)
+        self.moving = True
 
     def update(self, *args):
-        self.rect = self.rect.move(random.randrange(3) - 1,
-                                   random.randrange(3) - 1)
-        if args and args[0].type == pygame.MOUSEBUTTONUP and self.rect.collidepoint(args[0].pos):
-            self.image = Bomb.image_boom
+        if self.moving:
+            self.rect = self.rect.move(random.randrange(3) - 1, random.randrange(3) - 1)
+            if args and args[0].type == pygame.MOUSEBUTTONUP and self.rect.collidepoint(args[0].pos):
+                self.image = Bomb.image_boom
+                self.moving = False
 
 
 all_sprites = pygame.sprite.Group()
